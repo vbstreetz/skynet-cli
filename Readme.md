@@ -2,11 +2,11 @@
 
 The `skynet-cli` utility allows you to upload files to the [Sia Skynet](https://siasky.net/) CDN with ease.
 
-![Skynet cli](https://siasky.net/PAGDuY8RlyBPEi1inhmOWDNEU_YFPdfigFadaFv38gQh1w)
+![skynet-cli](https://siasky.net/PAKkm1jjjW-wcNDTiXtogd6epOt3YINtthT2Sy5bGB146w)
 
 ## Installation
 
-Ensure you're using nodejs version `10.16.3` and above, and install with npm:
+Ensure you're using a recent nodejs version, ideally `10.16.3+` and above, and install with npm:
 
 ```
 $ npm install -g skynet-cli
@@ -77,7 +77,7 @@ $ echo 'hello __world__' | skynet-cli --filename hello.md
 
 ## Attribution
 
-Adapted from [Automattic/cloudup-cli](https://github.com/Automattic/cloudup-cli) for [Gitcoin Skynet Hackathon Challenge](https://gitcoin.co/issue/NebulousLabs/Skynet-Hive/1/4058)
+Adapted from [Automattic/cloudup-cli](https://github.com/Automattic/cloudup-cli) for the [Gitcoin Skynet Hackathon Challenge](https://gitcoin.co/issue/NebulousLabs/Skynet-Hive/1/4058)
 
 ## Licence
 
