@@ -2,7 +2,7 @@
 
 The `skynet-cli` utility allows you to upload files to the [Sia Skynet](https://siasky.net/) CDN with ease.
 
-![skynet-cli](https://siasky.net/PAKkm1jjjW-wcNDTiXtogd6epOt3YINtthT2Sy5bGB146w)
+![skynet-cli](https://siasky.net/_Axj0jgCo1zLZWZAdzIJpk-bGWkLrUz54hw_-BBt2m5VIQ)
 
 ## Installation
 
