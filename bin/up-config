@@ -1,4 +1,0 @@
-#!/usr/bin/env node
-
-require('gnode');
-require('./_up-config');

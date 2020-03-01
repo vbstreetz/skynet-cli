@@ -1,0 +1,39 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "allowImportExportEverywhere": true
+  },
+  "plugins": [],
+  "rules": {
+    "arrow-spacing": "warn",
+    "brace-style": "warn",
+    "comma-dangle": "off",
+    "curly": "error",
+    "eqeqeq": ["error", "smart"],
+    "key-spacing": "error",
+    "keyword-spacing": "warn",
+    "max-len": "warn",
+    "no-console": "off",
+    "no-constant-condition": "off",
+    "no-eq-null": "warn",
+    "no-prototype-builtins": "warn",
+    "no-restricted-globals": "off",
+    "no-restricted-syntax": ["error", "ForOfStatement"],
+    "no-var": "warn",
+    "object-shorthand": "warn",
+    "prefer-const": "error",
+    "prettier/prettier": "warn",
+    "require-atomic-updates": "off",
+    "quotes": ["warn", "single"],
+    "semi": "error",
+    "space-before-blocks": ["warn", "always"],
+    "space-before-function-paren": ["error", "never"]
+  },
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "env": {
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  }
+}

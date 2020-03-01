@@ -1,0 +1,129 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+const program = require('commander');
+const pkg = require('../package');
+const head = require('head');
+const fs = require('fs');
+const Upload = require('../lib/upload');
+const { uuid } = require('../lib/utils');
+
+// options
+
+program
+  .version(pkg.version)
+  .usage('[options] [file ...]')
+  .option('-f, --filename <str>', 'assign filename to stdin')
+  .parse(process.argv);
+
+// title
+
+process.title = 'skynet-cli';
+
+// sub-command
+
+if (program.runningCommand) {
+  // 🤔
+  process.exit();
+}
+
+// reporter
+
+let reporter = 'console';
+if (program.json) {
+  reporter = 'json';
+}
+if (program.jsonStream) {
+  reporter = 'json-stream';
+}
+
+// stream
+
+const files = program.args;
+const stream = new Upload();
+
+// stdin reporter
+
+const isatty = process.stdin.isTTY;
+if (!files.length && isatty) {
+  reporter = 'plain';
+}
+
+// reporter
+
+const Reporter = require('../lib/' + reporter);
+new Reporter(stream, {
+  progressOnly: files.length > process.stdout.rows - 5,
+  direct: program.direct,
+});
+
+// stdin
+
+if (!files.length) {
+  if (process.stdin.isTTY) {
+    // user simply typed `skynet-cli`... display "help" page
+    program.help();
+  } else {
+    // upload whatever comes through stdin as a stream
+    const out = fs.createWriteStream('/tmp/skynet-cli-' + uuid(10));
+    process.stdin.resume();
+    process.stdin.pipe(out);
+    process.stdin.on('end', function() {
+      let filename = program.filename;
+      const opts = {};
+
+      if (textual(out.path)) {
+        filename = filename || 'untitled.txt';
+        opts.mime = 'text/plain';
+      }
+
+      filename = filename || out.path;
+      opts.filename = filename;
+
+      const item = stream.item(opts);
+
+      item.file(out.path);
+      stream.save(function(err) {
+        if (err) {
+          throw err;
+        }
+      });
+    });
+  }
+} else {
+  files.forEach(function(file) {
+    const item = stream.item({});
+    item.file(file);
+  });
+
+  // save
+
+  stream.on('error', function(err) {
+    console.error(err.message);
+  });
+
+  stream.save(function(err) {
+    if (err) {
+      throw err;
+    }
+  });
+}
+
+/**
+ * Check if `file` looks textual.
+ */
+
+function textual(file) {
+  const buf = head(file, 24 * 1024);
+
+  for (let i = 0; i < buf.length; i++) {
+    if (0 === buf[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
