@@ -36,7 +36,6 @@ Examples illustrating how to use the command-line tool to upload files.
 $ skynet-cli reflection.png
 
  reflection.png : 92%
-         stream : https://siasky.net/cHFtYYeB8fJ
 ```
 
 #### Multiple Files
@@ -58,7 +57,6 @@ $ skynet-cli simon-*.png
     simon-ocean-stick-2.… : 71%
     simon-ocean-stick.pn… : 55%
           simon-ocean.png : 74%
-                   stream : https://siasky.net/c7WwhIwSl6Y
 ```
 
 #### STDIN
@@ -74,6 +72,11 @@ A filename can be passed to help interpret the content:
 ```
 $ echo 'hello __world__' | skynet-cli --filename hello.md
 ```
+
+## Todos
+
+- [ ] Encrypt with pass
+- [ ] Zip & upload directory
 
 ## Attribution
 
