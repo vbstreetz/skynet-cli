@@ -77,6 +77,7 @@ $ echo 'hello __world__' | skynet-cli --filename hello.md
 
 - [ ] Encrypt with pass
 - [ ] Zip & upload directory
+- [ ] Upload to custom portal
 
 ## Attribution
 
