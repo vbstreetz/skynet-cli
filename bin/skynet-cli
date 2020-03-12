@@ -17,11 +17,19 @@ program
   .version(pkg.version)
   .usage('[options] [file ...]')
   .option('-f, --filename <str>', 'assign filename to stdin')
+  .option(
+    '-p, --portal <url>',
+    'upload to a different portal other than https://siasky.net'
+  )
   .parse(process.argv);
 
 // title
 
 process.title = 'skynet-cli';
+
+// portal
+
+program.portal = program.portal || 'https://siasky.net';
 
 // sub-command
 
@@ -73,7 +81,9 @@ if (!files.length) {
     process.stdin.pipe(out);
     process.stdin.on('end', function() {
       let filename = program.filename;
-      const opts = {};
+      const opts = {
+        portal: program.portal,
+      };
 
       if (textual(out.path)) {
         filename = filename || 'untitled.txt';
@@ -95,7 +105,9 @@ if (!files.length) {
   }
 } else {
   files.forEach(function(file) {
-    const item = stream.item({});
+    const item = stream.item({
+      portal: program.portal,
+    });
     item.file(file);
   });
 

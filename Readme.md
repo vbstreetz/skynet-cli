@@ -23,6 +23,7 @@ $ npm install -g skynet-cli
     -h, --help            output usage information
     -V, --version         output the version number
     -f, --filename        assign filename to stdin upload
+    -p, --portal          upload to a different portal other than https://siasky.net
 
 ```
 
@@ -73,11 +74,31 @@ A filename can be passed to help interpret the content:
 $ echo 'hello __world__' | skynet-cli --filename hello.md
 ```
 
+#### Portal
+
+You can opt to use a different portal, other than https://siasky.net, using the `-p, --portal` option:
+
+```
+skynet-cli -p https://sialoop.net big-buck-bunny.mp4
+```
+
+Here are some examples of known portals:
+
+- https://siasky.net
+- https://sialoop.net
+- https://skynet.luxor.tech
+- https://skynet.tutemwesi.com
+- https://siacdn.com
+- https://vault.lightspeedhosting.com
+
 ## Todos
 
+- [x] Upload single file
+- [x] Upload whole directory
+- [x] Upload stdin
 - [ ] Encrypt with pass
 - [ ] Zip & upload directory
-- [ ] Upload to custom portal
+- [x] Upload to custom portal
 
 ## Attribution
 
